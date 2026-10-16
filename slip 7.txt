@@ -1,0 +1,101 @@
+﻿Slip7  
+
+Q1)Write a program to implement the A* Search Algorithm to find the Shortest path between a 
+source node and a destination node.Source = V1  
+
+Destination = V6  
+
+  
+
+Import heapq  
+
+Graph = {  
+
+    ‘V1’: [(‘V2’, 1), (‘V3’, 4)],  
+
+    ‘V2’: [(‘V4’, 2), (‘V5’, 5)],  
+
+    ‘V3’: [(‘V5’, 1)],  
+
+    ‘V4’: [(‘V6’, 3)],  
+
+    ‘V5’: [(‘V6’, 2)],  
+
+    ‘V6’: []  
+
+}  
+
+H = {‘V1’: 5, ‘V2’: 4, ‘V3’: 3, ‘V4’: 2, ‘V5’: 1, ‘V6’: 0} Def 
+
+astar(start, goal):  
+
+    Q = [(h[start], 0, start, [start])]     While 
+
+q:  
+
+        F, cost, node, path = heapq.heappop(q)         
+
+If node == goal:  
+
+            Print(“Shortest Path:”, path)  
+
+            Print(“Cost:”, cost)  
+
+            Return  
+
+        For n, w in graph[node]:  
+
+            Heapq.heappush(q, (cost + w + h[n], cost + w, n, path + [n])) Astar(‘V1’, 
+
+‘V6’)  
+
+
+
+  
+
+Q2)Write a program to solve the Map Coloring Problem using the Constraint Satisfaction Problem 
+(CSP) approach.  
+
+  
+
+Colors = [‘Red’, ‘Green’, ‘Blue’]  
+
+Regions = [‘A’, ‘B’, ‘C’, ‘D’]  
+
+Neighbors = {  
+
+    ‘A’: [‘B’, ‘C’],  
+
+    ‘B’: [‘A’, ‘C’, ‘D’],  
+
+    ‘C’: [‘A’, ‘B’, ‘D’],  
+
+    ‘D’: [‘B’, ‘C’]  
+
+}  
+
+Def solve(coloring):  
+
+    If len(coloring) == len(regions):  
+
+        Return coloring  
+
+    Region = next(r for r in regions if r not in coloring)     For 
+
+color in colors:  
+
+        If all(coloring.get(n) != color for n in neighbors[region]):  
+
+            Coloring[region] = color  
+
+            Result = solve(coloring)  
+
+            If result:  
+
+                Return result  
+
+            Del coloring[region]  
+
+    Return None  
+
+Print(“Solution:”, solve({}))
